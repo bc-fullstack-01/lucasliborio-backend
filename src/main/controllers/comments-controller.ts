@@ -1,3 +1,3 @@
-const commentsController = () => {
+const commentsController = () => ({
     
-}
+})
