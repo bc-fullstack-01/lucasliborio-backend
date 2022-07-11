@@ -1,4 +1,4 @@
-import mongoose from "../db/mongodb"
+import mongoose from ".."
 import { Schema } from "mongoose"
 const CommentsSchema = new Schema({
     description:{
@@ -8,7 +8,7 @@ const CommentsSchema = new Schema({
     },
     post:{
         type:Schema.Types.ObjectId,
-        ref: 'Post'
+        ref: 'Posts'
     }
 })
 

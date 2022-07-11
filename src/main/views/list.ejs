@@ -14,7 +14,7 @@
        <% posts.forEach(({_id, title}) => { %>
         <li>
             <form action="/v1/posts/<%=_id%>?_method=delete" method="post">
-                <a href="/v1/posts/<%=_id%>"><%= title %></a> - <input type="submit" value="delete">
+                <a href="/v1/posts/<%=_id%>"><%= title %></a> - <input type="submit" value="del">
             </form>
         </li>
         <% }) %>

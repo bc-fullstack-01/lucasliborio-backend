@@ -1,4 +1,4 @@
-import mongoose from "../db/mongodb"
+import mongoose from ".."
 import { Schema } from "mongoose"
 
 const PostSchema = new Schema({

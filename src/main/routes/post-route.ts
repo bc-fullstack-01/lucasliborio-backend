@@ -11,8 +11,10 @@ export default (router: Router): void => {
   .get(postsController.new) // pagina para enviar para post
 
   router.route('/posts/:id')
-  .get(postsController.show)
+  .get()
   .put()
   .delete(postsController.delete)
 
+  router.route('/posts/:id')
+  .get() // pagina para enviar para post
 }
