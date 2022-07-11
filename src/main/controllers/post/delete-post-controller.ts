@@ -1,10 +1,10 @@
 
 import postModel from "../../db/mongo/models/post-model";
 import { Controller } from "../../protocolos/api/controller";
-import { HttpRequest, HttpResponse } from "../../protocolos/http/http";
+import { HttpRequest, HttpResponse } from "../../protocolos/http/http-types";
 import { serverError } from "../../protocolos/http/http-response";
 
-export class CreatePostController implements Controller {
+export class DeletePostController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const { postId } = request.body
     try {

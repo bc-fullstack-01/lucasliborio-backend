@@ -1,4 +1,4 @@
-import { HttpResponse } from "./http";
+import { HttpResponse } from "./http-types";
 
 export const badRequest = (message: string): HttpResponse => ({
   code: 400,

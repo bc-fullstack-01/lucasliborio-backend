@@ -1,13 +1,11 @@
-import { Application, urlencoded } from 'express';
-import { bodyParser } from '../middlewares/body-parser';
+import { Application, urlencoded, json } from 'express';
+
 import cors from 'cors'
-import methodOverride from 'method-override'
 
 export default (app: Application) => {
-  app.use(urlencoded({extended: false}))
-  app.use(bodyParser)
+  app.use(json())
   app.use(cors())
-  app.use(methodOverride('_method'))
+  
 }
 
 

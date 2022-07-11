@@ -1,12 +1,12 @@
 import mongoose from ".."
 import { Schema } from "mongoose"
 const CommentsSchema = new Schema({
-    description:{
+    content:{
         type:String,
         required: true,
         minLength: 2
     },
-    post:{
+    postId:{
         type:Schema.Types.ObjectId,
         ref: 'Posts'
     }

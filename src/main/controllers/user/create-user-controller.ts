@@ -1,7 +1,7 @@
 import userModel from "../../db/mongo/models/user-model";
-import { Controller } from "../../protocolos/api/controller";
-import { HttpRequest, HttpResponse } from "../../protocolos/http/http";
-import { badRequest, ok } from "../../protocolos/http/http-response";
+import { Controller } from "../../protocols/api/controller";
+import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
+import { badRequest, ok } from "../../protocols/http/http-response";
 import bcrypt from 'bcrypt'
 
 
@@ -18,5 +18,4 @@ export class CreateUserController implements Controller {
     })
     return ok(userCreated)
   }
-
 }
