@@ -8,5 +8,6 @@ export type HttpRequest = {
 export type HttpResponse = {
   code?: number
   body?: any
+  message?: string
 
 }

@@ -3,7 +3,7 @@ import { Controller } from "../../protocols/api/controller";
 import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
 import { serverError } from "../../protocols/http/http-response";
 
-export class updatePostController implements Controller {
+export class UpdatePostController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const { postId, title, description } = request.body
     try {

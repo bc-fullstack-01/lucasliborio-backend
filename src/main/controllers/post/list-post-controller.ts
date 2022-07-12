@@ -3,7 +3,7 @@ import { Controller } from "../../protocols/api/controller";
 import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
 import { serverError, ok } from "../../protocols/http/http-response";
 
-export class ListPostController implements Controller {
+export class ListPostsController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     try {
       const postsList = await postModel.find({})
