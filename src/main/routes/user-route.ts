@@ -1,6 +1,10 @@
-import { Request, Response, Router } from 'express';
-import { postsController } from '../controllers/post-controller'
-export default (router: Router): void => {
+import { Router } from 'express';
+import { expressAdapter } from '../adapters/express-adapter';
+import { CreateUserController } from '../controllers/user/create-user-controller';
 
-  router.route("/signup")
+export default (router: Router): void => {
+  router.get('/', (req, res) => {
+    res.send('TUDO OK')
+  })
+  router.post("/signup", expressAdapter(new CreateUserController()))
 }

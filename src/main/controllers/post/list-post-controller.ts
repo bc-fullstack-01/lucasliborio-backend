@@ -1,8 +1,7 @@
-
 import postModel from "../../db/mongo/models/post-model";
-import { Controller } from "../../protocolos/api/controller";
-import { HttpRequest, HttpResponse } from "../../protocolos/http/http-types";
-import { serverError, ok } from "../../protocolos/http/http-response";
+import { Controller } from "../../protocols/api/controller";
+import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
+import { serverError, ok } from "../../protocols/http/http-response";
 
 export class ListPostController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
