@@ -1,13 +1,15 @@
-import { Middleware } from "../protocols/api/middleware";
-import { HttpRequest, HttpResponse } from "../protocols/http/http-types";
-import jwt from "jsonwebtoken";
-import { ok, unauthorized } from "../protocols/http/http-response";
+import { NextFunction, Request, Response } from "express"
+import jwt from "jsonwebtoken"
 
-export class AuthMiddleware implements Middleware {
-  async handle(request: HttpRequest): Promise<HttpResponse> {
-    const somesecretdev = 'somesecretfordev'
-    const payload = jwt.verify(request.headers.authorization, somesecretdev)
-    if (payload) return ok(payload)
-    return unauthorized()
+export const AuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  const { authorization } = req.headers
+  const somesecretdev = 'somesecretfordev'
+  const payload = jwt.verify(authorization, somesecretdev)
+  console.log(payload)
+  if (payload) {
+    Object.assign(req.body, {payload})
+    next()
+  } else {
+    res.status(401).json({ error: 'unauthorized' })
   }
 }

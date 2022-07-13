@@ -19,7 +19,10 @@ const PostSchema = new Schema({
     likes: [{
       type: Schema.Types.ObjectId,
       ref: "Profile"
-    }]
+    }],
+    profileId: {
+      type: Schema.Types.ObjectId
+    }
 })
 
 export default mongoose.model('Post', PostSchema)

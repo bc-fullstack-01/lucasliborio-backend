@@ -1,6 +1,8 @@
+import { createPostPath } from "../docs/paths/create-post-path";
 import { loginPath } from "../docs/paths/login-path";
 import { signupPath } from "../docs/paths/signup-path";
-import { loginParamsSchema } from "../docs/schemas/login-params.schema";
+import { createPostParamsSchema } from "../docs/schemas/create-post-params-schema";
+import { loginParamsSchema } from "../docs/schemas/login-params-schema";
 import { signupParamsSchema } from "../docs/schemas/signup-params-schema";
 
 export const swaggerConfig =  {
@@ -21,10 +23,12 @@ export const swaggerConfig =  {
   }],
   paths: {
     '/signup': signupPath,
-    '/login':loginPath
+    '/login':loginPath,
+    '/posts/new':createPostPath
   },
   schemas: {
     signupParams: signupParamsSchema,
-    loginParams:loginParamsSchema
+    loginParams:loginParamsSchema,
+    createPostParams: createPostParamsSchema
   }
 }

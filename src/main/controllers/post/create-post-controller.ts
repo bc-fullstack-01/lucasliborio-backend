@@ -1,17 +1,20 @@
 import postModel from "../../db/mongo/models/post-model";
 import { Controller } from "../../protocols/api/controller";
 import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
-import { serverError } from "../../protocols/http/http-response";
+import { ok, serverError } from "../../protocols/http/http-response";
 
 export class CreatePostController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const { title, description } = request.body
+    const { title, description, payload } = request.body
     try {
-      await postModel.create({
+      const postToCreate = await postModel.create({
         title,
-        description
+        description,
+        profileId: payload.id
       })
+      return ok(postToCreate)
     } catch (err: any) {
+      console.log(err)
       return serverError()
     }
   }

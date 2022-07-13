@@ -1,5 +1,6 @@
 export const loginPath = {
   post: {
+    tags:['Login'],
     description: 'Path for user authentication',
     requestBody: {
       content: {

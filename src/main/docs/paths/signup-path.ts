@@ -1,5 +1,6 @@
 export const signupPath  = {
   post: {
+    tags:['Login'],
     description: 'Path to user registration',
     requestBody:{
       content: {

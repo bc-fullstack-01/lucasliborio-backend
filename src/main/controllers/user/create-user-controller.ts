@@ -16,6 +16,6 @@ export class CreateUserController implements Controller {
       email,
       password: passwordEncrypted
     })
-    return ok({ sucess: "registration succeds" })
+    return ok({ sucess: "registration succeeds" })
   }
 }
