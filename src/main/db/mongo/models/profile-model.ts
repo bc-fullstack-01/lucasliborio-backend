@@ -1,25 +1,26 @@
 import mongoose from "../../../server"
 import { Schema } from "mongoose"
 const profileSchema = new Schema({
-  posts: {
-    type: String,
-    required: true,
+  posts: [{
+    type: Schema.Types.ObjectId,
+    ref: "Posts",
     minLength: 2
-  },
-  followers: {
+  }],
+  followers: [{
     type: Schema.Types.ObjectId,
     ref: "Profile"
-  },
-  following: {
+  }],
+  following: [{
     type: Schema.Types.ObjectId,
     ref: "Profile"
-  },
+  }],
   userId: {
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
+    required: true
   }
 }, {
   timestamps: true
 })
 
-export default mongoose.model('Profile', profileSchema)
+export default mongoose.model("Profile", profileSchema)

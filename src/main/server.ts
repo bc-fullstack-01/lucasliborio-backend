@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost:27017/mydb').then(() => {
     console.log('server is running on 4000')
   });
 }).catch(() => {
-  console.log('Mongo não subiu')
+  console.log('cant reach mongo db, pleas look the logs')
 })
 
 export default mongoose

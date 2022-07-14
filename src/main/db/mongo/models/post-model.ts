@@ -14,14 +14,15 @@ const PostSchema = new Schema({
   },
   comments: [{
     type: Schema.Types.ObjectId,
-    ref: 'Comment'
+    ref: "Comment"
   }],
   likes: [{
     type: Schema.Types.ObjectId,
     ref: "Profile"
   }],
   profileId: {
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
+    ref: "Profile"
   }
 }, {
   timestamps: true

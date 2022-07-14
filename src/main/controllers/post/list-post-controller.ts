@@ -6,7 +6,10 @@ import { serverError, ok } from "../../protocols/http/http-response";
 export class ListPostsController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     try {
-      const postsList = await postModel.find({})
+      const {payload} = request.body
+      const postsList = await postModel.find({
+        profileId: payload.profileId
+      })
       return ok(postsList)
     } catch (err: any) {
       return serverError()

@@ -24,11 +24,19 @@ export const swaggerConfig =  {
   paths: {
     '/signup': signupPath,
     '/login':loginPath,
-    '/posts/new':createPostPath
+    '/post/new':createPostPath
   },
   schemas: {
     signupParams: signupParamsSchema,
     loginParams:loginParamsSchema,
     createPostParams: createPostParamsSchema
+  },
+  components:{
+    securitySchemes:{
+      BearerAuth:{
+        type:'http',
+        scheme:'bearer'
+      }
+    }
   }
 }

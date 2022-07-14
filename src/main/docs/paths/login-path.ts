@@ -34,7 +34,7 @@ export const loginPath = {
             schema: {
               type: "object",
               properties: {
-                message: {
+                error: {
                   type: "string",
                 }
               }
@@ -42,14 +42,14 @@ export const loginPath = {
           }
         }
       },
-      403: {
+      400: {
         description: 'bad request',
         content: {
           "application/json": {
             schema: {
               type: "object",
               properties: {
-                message: {
+                error: {
                   type: "string",
                 }
               }

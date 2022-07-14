@@ -3,6 +3,7 @@ import { Controller } from "../../protocols/api/controller";
 import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
 import { badRequest, ok } from "../../protocols/http/http-response";
 import bcrypt from 'bcrypt'
+import profileModel from "../../db/mongo/models/profile-model";
 
 
 export class CreateUserController implements Controller {
@@ -15,7 +16,12 @@ export class CreateUserController implements Controller {
       name,
       email,
       password: passwordEncrypted
+    }).then(async (userData) => {
+      await profileModel.create({
+        userId: userData._id
+      })
     })
+
     return ok({ sucess: "registration succeeds" })
   }
 }

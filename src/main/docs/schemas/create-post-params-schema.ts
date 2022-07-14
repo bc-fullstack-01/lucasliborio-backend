@@ -7,6 +7,6 @@ export const createPostParamsSchema = {
     },
     description:{
       type: 'string'
-    }
+    },
   }
 }

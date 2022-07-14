@@ -12,10 +12,10 @@ const CommentsSchema = new Schema({
   },
   postId: {
     type: Schema.Types.ObjectId,
-    ref: 'Posts'
+    ref: "Posts"
   }
 }, {
   timestamps: true
 })
 
-export default mongoose.model('Comment', CommentsSchema)
+export default mongoose.model("Comment", CommentsSchema)
