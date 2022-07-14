@@ -1,21 +1,25 @@
 import mongoose from "../../../server"
 import { Schema } from "mongoose"
-const CommentsSchema = new Schema({
-  content: {
+const profileSchema = new Schema({
+  posts: {
     type: String,
     required: true,
     minLength: 2
   },
-  likes: {
+  followers: {
     type: Schema.Types.ObjectId,
     ref: "Profile"
   },
-  postId: {
+  following: {
     type: Schema.Types.ObjectId,
-    ref: 'Posts'
+    ref: "Profile"
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
   }
 }, {
   timestamps: true
 })
 
-export default mongoose.model('Comment', CommentsSchema)
+export default mongoose.model('Profile', profileSchema)

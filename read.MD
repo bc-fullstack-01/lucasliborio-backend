@@ -1,9 +1,20 @@
-### criar user
-### update user
+User
+  - name
+  - password
+  - email
+  - createdAt
 
+Profile
+  - posts
+  - followers
+  - following
+  - userId
 
-### user cria posts
-### user edita posts
-### user cria comentarios
-### user edita comentarios
-### user segue outros users
+Posts
+ - title
+ - description
+ - hasImage
+ - imageUrl
+ - comments
+ - likes
+ - profileId
