@@ -10,8 +10,9 @@ export class CreatePostController implements Controller {
       const postToCreate = await postModel.create({
         title,
         description,
-        profileId: payload.id
+        profileId: payload.profileId
       })
+      console.log(postToCreate)
       return ok(postToCreate)
     } catch (err: any) {
       console.log(err)
