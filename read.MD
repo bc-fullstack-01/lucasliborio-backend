@@ -30,15 +30,19 @@ Posts
 User
 
 [x] - create user
-[x]  - login user
+[x] - login user
 
+Profile
+
+[X] - List all post from a single profile
 
 Post -
 [x] - create post
+[X] - get Post 
 [] - send notification via socket io to follwers
-[] - edit post
-[] - delete post
-[] - like/unlike post
+[X] - edit post
+[X] - delete post
+[X] - like/unlike post
 [] - send notification via socket io to post owner when receive likes
 
 Comment

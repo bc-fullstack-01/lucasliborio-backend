@@ -12,6 +12,11 @@ const PostSchema = new Schema({
     required: true,
     minLength: 2
   },
+  profileId: {
+    type: Schema.Types.ObjectId,
+    ref: "Profile",
+    required:true
+  },
   comments: [{
     type: Schema.Types.ObjectId,
     ref: "Comment"
@@ -20,10 +25,7 @@ const PostSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Profile"
   }],
-  profileId: {
-    type: Schema.Types.ObjectId,
-    ref: "Profile"
-  }
+  
 }, {
   timestamps: true
 })
