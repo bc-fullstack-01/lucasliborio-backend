@@ -6,13 +6,17 @@ const CommentsSchema = new Schema({
     required: true,
     minLength: 2
   },
-  likes: {
+  likes: [{
     type: Schema.Types.ObjectId,
     ref: "Profile"
-  },
+  }],
   postId: {
     type: Schema.Types.ObjectId,
     ref: "Posts"
+  },
+  profileId:{
+    type: Schema.Types.ObjectId,
+    ref:"Profile"
   }
 }, {
   timestamps: true

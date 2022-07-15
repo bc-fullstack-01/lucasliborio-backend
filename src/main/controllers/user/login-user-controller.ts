@@ -23,7 +23,7 @@ export class LoginUserController implements Controller {
       return ok({ acessToken: jwt.sign({ profileId: profileData._id }, somesecretdev) })
     } catch (error) {
       console.log(error)
-      if (error.name == "TypeError") return badRequest('invalid email or password, please try again')
+      if (error.name == "TypeError" || error.name == "ValidationError") return badRequest('invalid email or password, please try again')
       return serverError()
     }
   }

@@ -1,12 +1,16 @@
-import { createPostPath } from "../docs/paths/create-post-path";
-import { postPath } from "../docs/paths/post-path";
-import { listPostPath } from "../docs/paths/list-post-path";
-import { loginPath } from "../docs/paths/login-path";
-import { signupPath } from "../docs/paths/signup-path";
-import { createPostParamsSchema } from "../docs/schemas/create-post-params-schema";
-import { loginParamsSchema } from "../docs/schemas/login-params-schema";
-import { signupParamsSchema } from "../docs/schemas/signup-params-schema";
-import { postLikePath } from "../docs/paths/post-like-path";
+import { createPostPath } from "../docs/paths/post/create-post-path";
+import { postPath } from "../docs/paths/post/post-path";
+import { listPostPath } from "../docs/paths/post/list-post-path";
+import { loginPath } from "../docs/paths/login/login-path";
+import { signupPath } from "../docs/paths/login/signup-path";
+import { createPostParamsSchema } from "../docs/schemas/post/create-post-params-schema";
+import { loginParamsSchema } from "../docs/schemas/login/login-params-schema";
+import { signupParamsSchema } from "../docs/schemas/login/signup-params-schema";
+import { postLikePath } from "../docs/paths/post/post-like-path";
+import { createCommentRB } from "../docs/schemas/comment/create-comment-rb";
+import { createCommentPath } from "../docs/paths/comment/create-comment-path";
+import { commentPath } from "../docs/paths/comment/comment-path";
+import { likeCommentPath } from "../docs/paths/comment/like-comment-path";
 
 export const swaggerConfig =  {
   openapi: '3.0.0',
@@ -30,13 +34,17 @@ export const swaggerConfig =  {
     '/post/new':createPostPath,
     '/post/{profileId}':listPostPath,
     '/post/{postId}':postPath,
-    '/post/{postId}/like': postLikePath
+    '/post/{postId}/like': postLikePath,
+    '/post/{postId}/comment':createCommentPath,
+    '/post/{postId}/comment/{commentId}': commentPath,
+    '/post/{postId}/comment/{commentId}/like':likeCommentPath
   
   },
   schemas: {
     signupParams: signupParamsSchema,
     loginParams:loginParamsSchema,
-    createPostParams: createPostParamsSchema
+    createPostParams: createPostParamsSchema,
+    createCommentParamsRB: createCommentRB
   },
   components:{
     securitySchemes:{

@@ -4,15 +4,17 @@ import { Controller } from "../../protocols/api/controller";
 import { serverError, ok } from "../../protocols/http/http-response";
 import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
 
-export class EditCommentController implements Controller {
+export class UpdateCommentController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const { content, commentId } = request.body
+    const { content } = request.body
+    const { commentId } = request.params
     try {
       const editedComment = await commentModel.findOneAndUpdate({ _id: commentId }, {
-        content
-      })
-      return ok(editedComment)
+        content,
+      }, { runValidators: true, new: true })
+      return ok({ sucess: editedComment.id })
     } catch (error) {
+      console.log(error)
       return serverError()
     }
   }

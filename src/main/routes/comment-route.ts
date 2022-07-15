@@ -1,8 +1,15 @@
 import { Router } from "express";
+import { expressAdapter } from "../adapters/express-adapter";
+import { CreateCommentController } from "../controllers/coments/create-comment-controller";
+import { DeleteCommentController } from "../controllers/coments/delete-comment-controller";
+import { LikeUnlikeCommentController } from "../controllers/coments/like-comment-controller";
+import { UpdateCommentController } from "../controllers/coments/update-comment-controller";
+import { AuthMiddleware } from "../middleware/auth-middleware";
 
 export default (router: Router): void => {
-  router.post('/posts/:postId/comments')
-  router.post('/posts/:postId/comments/like')
-  router.post('/posts/:postId/comments/unlike')
-  router.delete('/posts/:postId/comments/:commentId')
+  router.post('/post/:postId/comment', AuthMiddleware, expressAdapter(new CreateCommentController()))
+  router.post('/post/:postId/comment/like')
+  router.delete('/post/:postId/comment/:commentId', AuthMiddleware, expressAdapter(new DeleteCommentController()))
+  router.put('/post/:postId/comment/:commentId', AuthMiddleware, expressAdapter(new UpdateCommentController()))
+  router.post('/post/:postId/comment/:commentId/like', AuthMiddleware, expressAdapter(new LikeUnlikeCommentController))
 }

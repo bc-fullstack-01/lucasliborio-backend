@@ -47,7 +47,9 @@ Post -
 
 Comment
 
-[] - create comment
+[X] - create comment
+[x] - update comment
+[x] - delete comment
 [] - send notification via socket.io to post owner
-[] - like/unlike comment
+[x] - like/unlike comment
 [] - send notification tvia socket.io o comment owner when receive likes
