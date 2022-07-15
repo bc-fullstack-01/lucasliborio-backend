@@ -5,7 +5,8 @@ import { HttpRequest } from "../protocols/http/http-types";
 export const expressAdapter = (controller: Controller) => {
   return async (req: Request, res: Response) => {
     const httpRequest: HttpRequest = {
-      body: req.body
+      body: req.body,
+      params: req.params
     }
     console.log(req.body)
     const { code, body } = await controller.handle(httpRequest)

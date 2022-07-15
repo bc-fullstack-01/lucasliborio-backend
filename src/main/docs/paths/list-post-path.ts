@@ -1,40 +1,25 @@
-export const createPostPath = {
-  post: {
+export const listPostPath = {
+  get: {
     tags:['Post'],
     security: [{
       BearerAuth: []
     }],
-    description: 'Path to create a new post in social media',
-    requestBody:{
-      content: {
-        "application/json": {
-          schema: {
-            $ref: "#/schemas/createPostParams"
-          },
-        },
-        "multipart/form-data": {
-          schema:{
-            type:'object',
-            properties:{
-              image:{
-                type: 'array',
-                items:{
-                  type:'string',
-                  format: 'binary'
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+    description: 'Path to list all post for some profile',
+    parameters:[{
+      name:"profileId",
+      in:"path",
+      required: true,
+      description: 'Profile ID',
+    }],
     responses:{
       200:{
-        description: 'post created successfully',
+        description: 'ok',
         content: {
           "application/json": {
             schema: {
-              type: "object",
+              type:'array',
+              items:{
+                type: "object",
               properties: {
                 title: {
                   type: "string",
@@ -61,6 +46,22 @@ export const createPostPath = {
                   }
                 },
               }
+              }
+            }
+          }
+        }
+      },
+      401: {
+        description: 'unauthorized',
+        content:{
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                error: {
+                  type: "string",
+                }
+              }
             }
           }
         }
@@ -80,6 +81,7 @@ export const createPostPath = {
           }
         }
       }
-    }   
+    }
+    
   }
 }
