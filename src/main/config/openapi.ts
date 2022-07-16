@@ -11,6 +11,9 @@ import { createCommentRB } from "../docs/schemas/comment/create-comment-rb";
 import { createCommentPath } from "../docs/paths/comment/create-comment-path";
 import { commentPath } from "../docs/paths/comment/comment-path";
 import { likeCommentPath } from "../docs/paths/comment/like-comment-path";
+import { profileSchema } from "../docs/schemas/profile/profile-schema";
+import { profilePath } from "../docs/paths/profile/profile-path";
+import { followUnfollowPath } from "../docs/paths/profile/follow-unfollow-profile-path";
 
 export const swaggerConfig =  {
   openapi: '3.0.0',
@@ -37,14 +40,17 @@ export const swaggerConfig =  {
     '/post/{postId}/like': postLikePath,
     '/post/{postId}/comment':createCommentPath,
     '/post/{postId}/comment/{commentId}': commentPath,
-    '/post/{postId}/comment/{commentId}/like':likeCommentPath
+    '/post/{postId}/comment/{commentId}/like':likeCommentPath,
+    '/profile/{profileId}':profilePath,
+    '/profile/{profileId}/follow': followUnfollowPath
   
   },
   schemas: {
     signupParams: signupParamsSchema,
     loginParams:loginParamsSchema,
     createPostParams: createPostParamsSchema,
-    createCommentParamsRB: createCommentRB
+    createCommentParamsRB: createCommentRB,
+    profileSchema: profileSchema
   },
   components:{
     securitySchemes:{

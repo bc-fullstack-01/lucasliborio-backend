@@ -3,8 +3,7 @@ import { Schema } from "mongoose"
 const profileSchema = new Schema({
   posts: [{
     type: Schema.Types.ObjectId,
-    ref: "Posts",
-    minLength: 2
+    ref: "Post",
   }],
   followers: [{
     type: Schema.Types.ObjectId,

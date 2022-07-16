@@ -35,6 +35,10 @@ User
 Profile
 
 [X] - List all post from a single profile
+[X] - get profile by id /profile/:profileId
+[] - follow/unfollow profile /profile/:profileId/follow
+[] - create search for profile
+[] - send notification when follow profile
 
 Post -
 [x] - create post
@@ -52,4 +56,6 @@ Comment
 [x] - delete comment
 [] - send notification via socket.io to post owner
 [x] - like/unlike comment
-[] - send notification tvia socket.io o comment owner when receive likes
+[] - send notification tvia socket.io o comment owner when receive likes 
+
+feed
