@@ -1,8 +1,8 @@
 import mongoose from "../../../server"
 import { Schema } from "mongoose"
 const profileSchema = new Schema({
-  username:{
-    type:String,
+  username: {
+    type: String,
     minlength: 5
   },
   posts: [{
@@ -26,4 +26,5 @@ const profileSchema = new Schema({
   timestamps: true
 })
 
+profileSchema.index({ username: 'text' })
 export default mongoose.model("Profile", profileSchema)
