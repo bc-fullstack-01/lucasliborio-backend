@@ -1,6 +1,10 @@
 import mongoose from "../../../server"
 import { Schema } from "mongoose"
 const profileSchema = new Schema({
+  username:{
+    type:String,
+    minlength: 5
+  },
   posts: [{
     type: Schema.Types.ObjectId,
     ref: "Post",

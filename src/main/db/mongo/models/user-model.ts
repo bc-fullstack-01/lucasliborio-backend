@@ -2,7 +2,7 @@ import mongoose from "../../../server"
 import { Schema } from "mongoose"
 
 const UserSchema = new Schema({
-    name:{
+    username:{
         type: String,
         required: true,
         minLength: 2
