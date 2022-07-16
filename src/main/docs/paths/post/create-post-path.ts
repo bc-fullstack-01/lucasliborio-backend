@@ -1,35 +1,29 @@
 export const createPostPath = {
   post: {
-    tags:['Post'],
+    tags: ['Post'],
     security: [{
       BearerAuth: []
     }],
     description: 'Path to create a new post in social media',
-    requestBody:{
+    requestBody: {
       content: {
         "application/json": {
           schema: {
             $ref: "#/schemas/createPostParams"
           },
         },
-        "multipart/form-data": {
-          schema:{
-            type:'object',
-            properties:{
-              image:{
-                type: 'array',
-                items:{
-                  type:'string',
-                  format: 'binary'
-                }
-              }
+        "application/octet-stream": {
+          schema: {
+            image: {
+              type: "string",
+              format: "binary"
             }
           }
         }
       }
     },
-    responses:{
-      200:{
+    responses: {
+      200: {
         description: 'post created successfully',
         content: {
           "application/json": {
@@ -50,14 +44,14 @@ export const createPostPath = {
                 },
                 comments: {
                   type: "array",
-                  items:{
-                    type:"string"
+                  items: {
+                    type: "string"
                   }
                 },
                 likes: {
                   type: "array",
-                  items:{
-                    type:"string"
+                  items: {
+                    type: "string"
                   }
                 },
               }
@@ -65,14 +59,14 @@ export const createPostPath = {
           }
         }
       },
-      500:{
+      500: {
         descrption: 'server error',
-        content:{
-          "application/json":{
-            schema:{
+        content: {
+          "application/json": {
+            schema: {
               type: "object",
-              properties:{
-                error:{
+              properties: {
+                error: {
                   type: 'string'
                 }
               }
@@ -80,6 +74,6 @@ export const createPostPath = {
           }
         }
       }
-    }   
+    }
   }
 }
