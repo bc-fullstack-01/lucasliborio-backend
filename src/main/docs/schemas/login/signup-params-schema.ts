@@ -5,7 +5,7 @@ export const signupParamsSchema = {
     email: {
       type: 'string'
     },
-    name: {
+    username: {
       type: 'string'
     },
     password: {

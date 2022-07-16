@@ -1,7 +1,12 @@
+import { triggerAsyncId } from "async_hooks";
+
 export const profileSchema = {
   type: 'object',
   properties:{
     _id: {
+      type:'string'
+    },
+    username:{
       type:'string'
     },
     followers:{

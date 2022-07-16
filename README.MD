@@ -36,7 +36,7 @@ Profile
 
 [X] - List all post from a single profile
 [X] - get profile by id /profile/:profileId
-[] - follow/unfollow profile /profile/:profileId/follow
+[X] - follow/unfollow profile /profile/:profileId/follow
 [] - create search for profile
 [] - send notification when follow profile
 
