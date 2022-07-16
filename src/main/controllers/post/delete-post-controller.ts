@@ -2,6 +2,7 @@ import postModel from "../../db/mongo/models/post-model";
 import { Controller } from "../../protocols/api/controller";
 import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
 import { serverError, ok, unauthorized, badRequest } from "../../protocols/http/http-response";
+import profileModel from "../../db/mongo/models/profile-model";
 
 export class DeletePostController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
@@ -10,9 +11,15 @@ export class DeletePostController implements Controller {
     try {
       const postToDelete = await postModel.findById(postId)
 
-      if(!postToDelete) return badRequest('not found')
+      if(!postToDelete) return badRequest('post not found')
       
-      if (postToDelete.profileId.toString() === payload.profileId) return ok(await postModel.findByIdAndDelete(postId))
+      if (postToDelete.profileId.toString() === payload.profileId) {
+        const postToDelete = await postModel.findByIdAndDelete(postId)
+        await profileModel.updateOne({_id: payload.profileId}, {$pull: {
+          posts: postToDelete.id
+        }})
+        return ok(postToDelete)
+      }
       else {
         return unauthorized()
       }
