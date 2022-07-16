@@ -14,6 +14,7 @@ import { likeCommentPath } from "../docs/paths/comment/like-comment-path";
 import { profileSchema } from "../docs/schemas/profile/profile-schema";
 import { profilePath } from "../docs/paths/profile/profile-path";
 import { followUnfollowPath } from "../docs/paths/profile/follow-unfollow-profile-path";
+import { searchProfilePath } from "../docs/paths/profile/search-profile-path";
 
 export const swaggerConfig =  {
   openapi: '3.0.0',
@@ -42,7 +43,8 @@ export const swaggerConfig =  {
     '/post/{postId}/comment/{commentId}': commentPath,
     '/post/{postId}/comment/{commentId}/like':likeCommentPath,
     '/profile/{profileId}':profilePath,
-    '/profile/{profileId}/follow': followUnfollowPath
+    '/profile/{profileId}/follow': followUnfollowPath,
+    '/profile/search?q={q}':searchProfilePath
   
   },
   schemas: {
