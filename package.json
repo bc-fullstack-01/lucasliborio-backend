@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -r build && tsc",
-    "start": "nodemon build/server",
-    "w": "tsc --watch"
+    "start": "nodemon ./build/server.js",
+    "w": "tsc --watch",
+    "build:docker":"npm run build && docker-compose up"
   },
   "keywords": [],
   "author": "",

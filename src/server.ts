@@ -2,20 +2,29 @@ import { app } from './config/app';
 import mongoose from 'mongoose'
 import RabbitServer from './broker/rabbitmq';
 
-const rabbitBroke = new RabbitServer('amqp://localhost')
-mongoose.connect('mongodb://localhost:27017/mydb').then(async () => {
+const PORT = process.env.PORT || 4000 // 4000 DEV 5000 DOCKER
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/dev-db'
+const RABBIT_URL = process.env.RABBIT_URL || 'amqp://localhost:'
+
+const rabbitBroke = new RabbitServer(RABBIT_URL)
+
+mongoose.connect(MONGO_URL).then(async () => {
+
 
   await rabbitBroke.start().then(() => {
     rabbitBroke.consumeFromQueue(msg => {
       console.log(JSON.parse(msg.content.toString()))
     })
   })
-  app.listen(4000, () => {
-    console.log('server is running on 4000')
+  app.listen(PORT|| 4000, () => {
+    console.log('server is running on ' + PORT)
   })
 })
-.catch(() => {
-  console.log('cant reach mongo db, pleas look the logs')
+.catch((err) => { 
+  console.log(err)
+  console.log(RABBIT_URL)
+  console.log(MONGO_URL)
+  console.log('cant reach mongo db, please look the logs')
 })
 
 
