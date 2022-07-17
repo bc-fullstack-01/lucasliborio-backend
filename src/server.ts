@@ -10,13 +10,9 @@ mongoose.connect('mongodb://localhost:27017/mydb').then(async () => {
       console.log(JSON.parse(msg.content.toString()))
     })
   })
-  
   app.listen(4000, () => {
-    
     console.log('server is running on 4000')
   })
-}).then(() => {
-  
 })
 .catch(() => {
   console.log('cant reach mongo db, pleas look the logs')

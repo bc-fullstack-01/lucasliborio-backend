@@ -1,4 +1,4 @@
-import { Channel, connect, Connection } from "amqplib";
+import { Channel, connect, Connection, ConsumeMessage, Message } from "amqplib";
 
 
 export default class RabbitServer {
@@ -30,10 +30,9 @@ export default class RabbitServer {
   }
 
   async consumeFromQueue(callback: (msg: any) => void): Promise<void> {
-    this.channel.consume("notification_queue", received => {
-      console.log(received)
-      callback(received)
-      this.channel.ack(received)
+    await this.channel.consume("notification_queue", msg => {
+      callback(msg)
+      this.channel.ack(msg)
     })
   }
 }

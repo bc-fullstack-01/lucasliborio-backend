@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -r build && tsc",
-    "start": "nodemon build/main/server",
+    "start": "nodemon build/server",
     "w": "tsc --watch"
   },
   "keywords": [],

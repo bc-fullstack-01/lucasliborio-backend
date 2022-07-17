@@ -1,3 +1,4 @@
+import { publishEvent } from "../../broker/pub";
 import profileModel from "../../db/mongo/models/profile-model";
 import { Controller } from "../../protocols/api/controller";
 import { badRequest, serverError, ok } from "../../protocols/http/http-response";
@@ -7,6 +8,7 @@ export class FollowUnfollowProfileController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const { profileId } = request.params
     const { payload } = request.body
+
     const profileToFollowUnfollow = await profileModel.findById(profileId)
     if (!profileToFollowUnfollow) return badRequest('profile dont exist')
 
@@ -26,6 +28,7 @@ export class FollowUnfollowProfileController implements Controller {
               followers: payload.profileId
             }
           })
+          await publishEvent('follow', profileToFollowUnfollow, profileOwner)
         } else {
           await profileModel.updateOne({ _id: payload.profileId }, {
             $pull: {
