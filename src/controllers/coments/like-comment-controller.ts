@@ -1,3 +1,4 @@
+import { publishEvent } from "../../broker/pub";
 import commentModel from "../../db/mongo/models/comment-model";
 import postModel from "../../db/mongo/models/post-model";
 import { Controller } from "../../protocols/api/controller";
@@ -19,7 +20,10 @@ export class LikeUnlikeCommentController implements Controller {
         $pull:{likes: profileId}
       })
 
-      if (likeIndex === -1) return ok({ sucess: 'comment liked successfully' })
+      if (likeIndex === -1) {
+        await publishEvent('comment-like', commentToLike.profileId, commentToLike )
+        return ok({ sucess: 'comment liked successfully' })
+      }
       else return ok({ sucess: 'comment unliked successfully' })
 
     } catch (error) {

@@ -43,19 +43,19 @@ Profile
 Post -
 [x] - create post
 [X] - get Post 
-[] - send notification via socket io to follwers
+[x] - send notification via socket io to follwers
 [X] - edit post
 [X] - delete post
 [X] - like/unlike post
-[] - send notification via socket io to post owner when receive likes
+[x] - send notification via socket io to post owner when receive likes
 
 Comment
 
 [X] - create comment
 [x] - update comment
 [x] - delete comment
-[] - send notification via socket.io to post owner
+[x] - send notification via socket.io to post owner
 [x] - like/unlike comment
-[] - send notification tvia socket.io o comment owner when receive likes 
+[x] - send notification tvia socket.io o comment owner when receive likes 
 
 feed
