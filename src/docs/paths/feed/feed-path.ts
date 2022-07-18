@@ -1,7 +1,7 @@
 export const feedPath = {
   get: {
     description: 'Path to create a feed',
-    tags: ['Post'],
+    tags: ['Feed'],
     security: [{
       BearerAuth: []
     }],
