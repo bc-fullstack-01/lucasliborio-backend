@@ -16,7 +16,7 @@ export class CreateCommentController implements Controller {
       if (postToAddNewComment) {
         const createComment = await commentModel.create({
           content,
-          profileId: payload.profileId,
+          profileId: payload._id,
           postId
         })
         const postToUpdateComment = await postModel.updateOne({_id: postId},{$push: {

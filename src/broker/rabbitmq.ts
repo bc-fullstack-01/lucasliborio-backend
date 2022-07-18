@@ -1,4 +1,4 @@
-import { Channel, connect, Connection, ConsumeMessage, Message } from "amqplib";
+import { Channel, connect, Connection} from "amqplib";
 
 
 export default class RabbitServer {
