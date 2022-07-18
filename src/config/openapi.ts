@@ -37,7 +37,6 @@ export const swaggerConfig =  {
     '/signup': signupPath,
     '/login':loginPath,
     '/post/new':createPostPath,
-    '/post/{profileId}':listPostPath,
     '/post/{postId}':postPath,
     '/post/{postId}/like': postLikePath,
     '/post/{postId}/comment':createCommentPath,
@@ -45,6 +44,7 @@ export const swaggerConfig =  {
     '/post/{postId}/comment/{commentId}/like':likeCommentPath,
     '/profile/{profileId}':profilePath,
     '/profile/{profileId}/follow': followUnfollowPath,
+    '/profile/{profileId}/posts':listPostPath,
     '/profile/search?q={q}':searchProfilePath,
     '/feed?page={page}': feedPath
   

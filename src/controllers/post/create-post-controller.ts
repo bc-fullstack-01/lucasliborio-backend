@@ -13,11 +13,11 @@ export class CreatePostController implements Controller {
       const postToCreate = await postModel.create({
         title,
         description,
-        profileId: payload.profileId
+        profileId: payload._id
       })
       
       if (postToCreate) {
-        const profile = await profileModel.findOneAndUpdate({ _id: payload.profileId }, {
+        const profile = await profileModel.findOneAndUpdate({ _id: payload._id }, {
           $push: {
             posts: postToCreate.id
           }

@@ -12,32 +12,32 @@ export class FollowUnfollowProfileController implements Controller {
     const profileToFollowUnfollow = await profileModel.findById(profileId)
     if (!profileToFollowUnfollow) return badRequest('profile dont exist')
 
-    const profileOwner = await profileModel.findById(payload.profileId)
+    const profileOwner = await profileModel.findById(payload._id)
     try {
       if (profileOwner) {
         const indexToMatch = profileOwner.following.indexOf(profileToFollowUnfollow.id)
         if (indexToMatch === -1) {
 
-          await profileModel.updateOne({ _id: payload.profileId }, {
+          await profileModel.updateOne({ _id: payload._id }, {
             $push: {
               following: profileId
             }
           })
           await profileModel.updateOne({ _id: profileId }, {
             $push: {
-              followers: payload.profileId
+              followers: payload._id
             }
           })
           await publishEvent('follow', profileToFollowUnfollow, profileOwner)
         } else {
-          await profileModel.updateOne({ _id: payload.profileId }, {
+          await profileModel.updateOne({ _id: payload._id }, {
             $pull: {
               following: profileId
             }
           })
           await profileModel.updateOne({ _id: profileId }, {
             $pull: {
-              followers: payload.profileId
+              followers: payload._id
             }
           })
         }

@@ -8,7 +8,7 @@ export class ListPostsController implements Controller {
     try {
       const {payload} = request.body
       const postsList = await postModel.find({
-        profileId: payload.profileId
+        profileId: payload._id
       })
       return ok(postsList)
     } catch (err: any) {

@@ -14,7 +14,7 @@ export class UpdatePostController implements Controller {
         description: description
 
       }, {runValidators: true, new:true})
-      console.log(postUpdated)
+      
       if (postUpdated) return ok(postUpdated)
 
       return badRequest('invalid postId')

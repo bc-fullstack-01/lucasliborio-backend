@@ -13,9 +13,9 @@ export class DeletePostController implements Controller {
 
       if(!postToDelete) return badRequest('post not found')
       
-      if (postToDelete.profileId.toString() === payload.profileId) {
+      if (postToDelete.profileId.toString() === payload._id) {
         const postToDelete = await postModel.findByIdAndDelete(postId)
-        await profileModel.updateOne({_id: payload.profileId}, {$pull: {
+        await profileModel.updateOne({_id: payload._id}, {$pull: {
           posts: postToDelete.id
         }})
         return ok(postToDelete)

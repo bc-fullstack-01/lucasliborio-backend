@@ -15,7 +15,7 @@ export class SearchProfileController implements Controller {
       }, {
         score: { $meta: "textScore" }
       }).sort({ score: { $meta: "textScore" } })
-      console.log(searchResult)
+      
       return ok(searchResult)
 
     } catch (error) {

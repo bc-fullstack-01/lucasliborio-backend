@@ -7,16 +7,16 @@ import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
 export class LikeUnlikePostController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const { postId } = request.params
-    const { profileId } = request.body.payload
+    const { _id } = request.body.payload
 
     try {
       const postToLikeUnlike = await postModel.findById(postId)
-      const indexToPost = postToLikeUnlike.likes.indexOf(profileId)
+      const indexToPost = postToLikeUnlike.likes.indexOf(_id)
       indexToPost === -1 
       ? await postModel.findByIdAndUpdate(postId, {
-        $push:{likes: profileId}
+        $push:{likes: _id}
       }) : await postModel.findByIdAndUpdate(postId, {
-        $pull:{likes: profileId}
+        $pull:{likes: _id}
       })
 
       if (indexToPost === -1) {

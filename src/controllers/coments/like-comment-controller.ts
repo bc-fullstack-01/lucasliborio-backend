@@ -8,16 +8,16 @@ import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
 export class LikeUnlikeCommentController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const { commentId } = request.params
-    const { profileId } = request.body.payload
+    const { _id } = request.body.payload
     try {
       
       const commentToLike = await commentModel.findById(commentId)
-      const likeIndex = commentToLike.likes.indexOf(profileId)
+      const likeIndex = commentToLike.likes.indexOf(_id)
       likeIndex === -1 
       ? await commentModel.findByIdAndUpdate(commentId, {
-        $push:{likes: profileId}
+        $push:{likes: _id}
       }) : await commentModel.findByIdAndUpdate(commentId, {
-        $pull:{likes: profileId}
+        $pull:{likes: _id}
       })
 
       if (likeIndex === -1) {
