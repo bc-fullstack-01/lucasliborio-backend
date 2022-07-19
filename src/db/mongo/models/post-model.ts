@@ -4,12 +4,12 @@ import { Schema } from "mongoose"
 const PostSchema = new Schema({
   title: {
     type: String,
-    required: true,
+    required: [true, 'title must have at least 2 characters'],
     minLength: 2
   },
   description: {
     type: String,
-    required: true,
+    required: [true, 'title must have at least 2 characters'],
     minLength: 2
   },
   profileId: {
@@ -31,8 +31,8 @@ const PostSchema = new Schema({
   },
   imageUrl:{
     type: String,
+    default: 'none'
   }
-  
 }, {
   timestamps: true
 })
