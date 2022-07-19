@@ -9,7 +9,7 @@ const PostSchema = new Schema({
   },
   description: {
     type: String,
-    required: [true, 'title must have at least 2 characters'],
+    required: [true, 'description must have at least 2 characters'],
     minLength: 2
   },
   profileId: {

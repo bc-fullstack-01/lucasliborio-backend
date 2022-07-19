@@ -12,7 +12,7 @@ export class CreateCommentController implements Controller {
     const { postId } = request.params
 
     const postToAddNewComment = await postModel.findById(postId)
-    if (!postToAddNewComment) return notFound('COMMENT')
+    if (!postToAddNewComment) return notFound('POST')
     const createComment = await commentModel.create({
       content,
       profileId: payload._id,

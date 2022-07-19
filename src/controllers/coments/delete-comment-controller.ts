@@ -11,7 +11,8 @@ export class DeleteCommentController implements Controller {
     const { payload } = request.body
 
     const postToDeleteComment = await postModel.findById(postId)
-    if (postToDeleteComment.profileId.toString() === payload._id.toString()) return forbbiden()
+    console.log(postToDeleteComment.profileId.toString(),payload._id.toString())
+    if (postToDeleteComment.profileId.toString() !== payload._id.toString()) return forbbiden()
     if (!postToDeleteComment) return notFound('POST')
 
     const commentToDelete = await commentModel.findByIdAndDelete(commentId)
