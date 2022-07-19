@@ -1,5 +1,6 @@
 import { Response, Request } from "express";
 import { Controller } from "../protocols/api/controller";
+import { serverError } from "../protocols/http/http-response";
 import { HttpRequest } from "../protocols/http/http-types";
 
 export const expressAdapter = (controller: Controller) => {
@@ -11,7 +12,15 @@ export const expressAdapter = (controller: Controller) => {
       headers: req.headers,
       file: req.file
     }
-    const { code, body } = await controller.handle(httpRequest)
-    return res.status(code).json(body)
+    try {
+      const { code, body } = await controller.handle(httpRequest)
+      console.log(code, body)
+      return res.status(code).json(body)
+    } catch (error) {
+      console.log(error)
+      if (error.name === "ValidationError") return res.status(400).json({ error: error.message })
+      if (error.name === "CastError") return res.status(404).json({error: 'NOTFOUND'})
+      else return serverError()
+    }
   }
 }
