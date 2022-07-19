@@ -7,12 +7,15 @@
     "build": "rm -r build && tsc",
     "start": "nodemon ./build/server.js",
     "w": "tsc --watch",
-    "build:docker":"npm run build && docker-compose up"
+    "build:docker": "npm run build && docker-compose up"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.131.0",
+    "@aws-sdk/s3-request-presigner": "^3.131.0",
+    "@aws-sdk/types": "^3.127.0",
     "amqplib": "^0.10.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",

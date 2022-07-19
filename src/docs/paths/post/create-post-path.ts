@@ -7,16 +7,20 @@ export const createPostPath = {
     description: 'Path to create a new post in social media',
     requestBody: {
       content: {
-        "application/json": {
-          schema: {
-            $ref: "#/schemas/createPostParams"
-          },
-        },
-        "application/octet-stream": {
-          schema: {
-            image: {
-              type: "string",
-              format: "binary"
+        "multipart/form-data":{
+          schema:{
+            type: 'object',
+            properties:{
+              title:{
+                type:'string'
+              },
+              description:{
+                type:'string'
+              },
+              image:{
+                type:'string',
+                format: 'binary'
+              }
             }
           }
         }

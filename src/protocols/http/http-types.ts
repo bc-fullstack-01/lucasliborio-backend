@@ -3,6 +3,7 @@ export type HttpRequest = {
   params?: any
   headers?: any
   query?: any
+  file?:any
 
 }
 

@@ -7,8 +7,14 @@ import { LikeUnlikePostController } from "../controllers/post/like-unlike-post-c
 import { UpdatePostController } from "../controllers/post/update-post-controller";
 import { AuthMiddleware } from "../middleware/auth-middleware";
 
+import multer from "multer";
+const multerConfig = {
+  storage: multer.memoryStorage()
+}
+const upload = multer(multerConfig)
+
 export default (route: Router) => {
-  route.post('/post/new', AuthMiddleware, expressAdapter(new CreatePostController()))
+  route.post('/post/new',upload.single('image'),AuthMiddleware, expressAdapter(new CreatePostController()))
   route.get('/post/:postId', AuthMiddleware, expressAdapter(new GetPostById()))
   route.delete('/post/:postId', AuthMiddleware, expressAdapter(new DeletePostController()))
   route.put('/post/:postId', AuthMiddleware, expressAdapter(new UpdatePostController()))

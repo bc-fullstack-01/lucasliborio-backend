@@ -25,6 +25,13 @@ const PostSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Profile"
   }],
+  hasImage:{
+    type: Boolean,
+    default: false
+  },
+  imageUrl:{
+    type: String,
+  }
   
 }, {
   timestamps: true
