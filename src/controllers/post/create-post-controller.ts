@@ -28,15 +28,14 @@ export class CreatePostController implements Controller {
           profileId: payload._id
         })
       }
-      if (postToCreate) {
-        const profile = await profileModel.findOneAndUpdate({ _id: payload._id }, {
-          $push: {
-            posts: postToCreate.id
-          }
-        })
-        await publishEvent('post', profile.followers, postToCreate)
-        return ok(postToCreate)
-      }
+      const profile = await profileModel.findOneAndUpdate({ _id: payload._id }, {
+        $push: {
+          posts: postToCreate.id
+        }
+      })
+      await publishEvent('post', profile.followers, postToCreate)
+      return ok(postToCreate)
+
     } catch (err: any) {
       console.log(err)
       return serverError()
