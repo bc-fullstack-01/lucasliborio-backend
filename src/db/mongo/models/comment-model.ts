@@ -3,7 +3,7 @@ import { Schema } from "mongoose"
 const CommentsSchema = new Schema({
   content: {
     type: String,
-    required: true,
+    required: [true, 'content cant be empty'],
     minLength: 2
   },
   likes: [{
