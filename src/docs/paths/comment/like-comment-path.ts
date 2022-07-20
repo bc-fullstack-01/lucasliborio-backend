@@ -18,13 +18,59 @@ export const likeCommentPath = {
     }],
     responses:{
       200: {
-        content:{
-          "application/json":{
-            schema:{
-              type:'object',
-              properties:{
-                sucess:{
-                  type:"string"
+        description: 'ok',
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                ok: {
+                  type: 'string'
+                }
+              }
+            }
+          }
+        }
+      },
+      400: {
+        description: 'bad request',
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                error: {
+                  type: 'string'
+                }
+              }
+            }
+          }
+        }
+      },
+      401: {
+        description: 'unauthorized',
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                error: {
+                  type: 'string'
+                }
+              }
+            }
+          }
+        }
+      },
+      500: {
+        description: 'server error',
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                error: {
+                  type: 'string'
                 }
               }
             }

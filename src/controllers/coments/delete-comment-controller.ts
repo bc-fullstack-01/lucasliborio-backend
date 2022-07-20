@@ -11,16 +11,18 @@ export class DeleteCommentController implements Controller {
     const { payload } = request.body
 
     const postToDeleteComment = await postModel.findById(postId)
-    if (postToDeleteComment.profileId.toString() !== payload._id.toString()) return forbbiden()
+    const commentToDelete = await commentModel.findById(commentId)
     if (!postToDeleteComment) return notFound('POST')
-
-    const commentToDelete = await commentModel.findByIdAndDelete(commentId)
     if (!commentToDelete) return notFound('COMMENT')
-    await postModel.findByIdAndUpdate(postId, {
-      $pull: {
-        comments: commentToDelete.id
-      }
-    })
-    return ok({ ok: 'comment deleted successfully' })
+    if (postToDeleteComment.profileId.toString() === payload._id.toString() || commentToDelete.profileId.toString() === payload._id.toString()) {
+      await commentModel.findByIdAndDelete(commentId)
+      await postModel.findByIdAndUpdate(postId, {
+        $pull: {
+          comments: commentToDelete.id
+        }
+      })
+      return ok({ ok: 'comment deleted successfully' })
+    }
+    return forbbiden()
   }
 }

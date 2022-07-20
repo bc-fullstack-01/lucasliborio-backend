@@ -18,13 +18,13 @@ export const commentPath = {
     }],
     responses: {
       200: {
-        description: 'deleted successfully',
+        description: 'ok',
         content: {
           "application/json": {
             schema: {
               type: "object",
               properties: {
-                id: {
+                ok: {
                   type: 'string'
                 }
               }
@@ -33,7 +33,7 @@ export const commentPath = {
         }
       },
       400: {
-        description: 'Bad Request',
+        description: 'bad request',
         content: {
           "application/json": {
             schema: {
@@ -107,13 +107,13 @@ export const commentPath = {
     },
     responses: {
       200: {
-        description: 'deleted successfully',
+        description: 'ok',
         content: {
           "application/json": {
             schema: {
               type: "object",
               properties: {
-                id: {
+                ok: {
                   type: 'string'
                 }
               }
@@ -122,7 +122,7 @@ export const commentPath = {
         }
       },
       400: {
-        description: 'Bad Request',
+        description: 'bad request',
         content: {
           "application/json": {
             schema: {

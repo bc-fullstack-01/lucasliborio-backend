@@ -7,16 +7,18 @@ import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
 
 export class UpdateCommentController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const { content } = request.body
+    const { content, payload} = request.body
     const { commentId, postId } = request.params
 
-    const postToAddNewComment = await postModel.findById(postId)
-    if (!postToAddNewComment) return notFound('POST')
-    const editedComment = await commentModel.findOneAndUpdate({ _id: commentId }, {
-      content,
-    }, { runValidators: true, new: true })
-    if (!editedComment) return notFound('COMMENT')
-    return ok({ sucess: editedComment.id })
-
+    const postToUpdateComment = await postModel.findById(postId)
+    if (!postToUpdateComment) return notFound('POST')
+    const commentToEdit = await commentModel.findById(commentId)
+    if (!commentToEdit) return notFound('COMMENT')
+    if (commentToEdit.profileId === payload._id){
+      const editedComment = await commentModel.findOneAndUpdate({ _id: commentId }, {
+        content,
+      }, { runValidators: true, new: true })
+    }
+    return ok({ ok: 'comment edited successfully'})
   }
 }

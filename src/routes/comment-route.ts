@@ -7,9 +7,9 @@ import { UpdateCommentController } from "../controllers/coments/update-comment-c
 import { AuthMiddleware } from "../middleware/auth-middleware";
 
 export default (router: Router): void => {
-  router.post('/post/:postId/comment', AuthMiddleware, expressAdapter(new CreateCommentController()))
-  router.post('/post/:postId/comment/like')
   router.delete('/post/:postId/comment/:commentId', AuthMiddleware, expressAdapter(new DeleteCommentController()))
+  router.post('/post/:postId/comment', AuthMiddleware, expressAdapter(new CreateCommentController()))
   router.put('/post/:postId/comment/:commentId', AuthMiddleware, expressAdapter(new UpdateCommentController()))
   router.post('/post/:postId/comment/:commentId/like', AuthMiddleware, expressAdapter(new LikeUnlikeCommentController))
+  
 }

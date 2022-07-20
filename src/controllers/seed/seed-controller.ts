@@ -11,7 +11,7 @@ import postModel from "../../db/mongo/models/post-model";
 export class SeedController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const profiles = []
-    for (let i = 0; i < users.length; i++ ) {
+    for (let i = 0; i < users.length; i++) {
       await userModel.create(users[i]).then(async (createdUser) => {
         return await profileModel.create({
           userId: createdUser.id,
@@ -21,23 +21,22 @@ export class SeedController implements Controller {
         })
       })
     }
-    for (let x = 0; x < profiles.length; x++){
+    for (let x = 0; x < profiles.length; x++) {
       await postModel.create({
         title: `primeiro post do ${profiles[x].username}`,
         description: `descrição para o post do ${profiles[x].username}`,
         profileId: profiles[x]._id
       })
       const idsProfiles = profiles.map(profiles => profiles._id).filter(id => id !== profiles[x]._id)
-      console.log(idsProfiles)
       await postModel.updateOne({
-        profileId:profiles[x]._id
-      }, {$push: {likes: {$each:idsProfiles}}})
+        profileId: profiles[x]._id
+      }, { $push: { likes: { $each: idsProfiles } } })
       await profileModel.updateOne({
-        _id:profiles[x]._id
+        _id: profiles[x]._id
       }, {
-        $push:{
-          followers: {$each: idsProfiles},
-          following: {$each: idsProfiles}
+        $push: {
+          followers: { $each: idsProfiles },
+          following: { $each: idsProfiles }
         }
       })
     }
