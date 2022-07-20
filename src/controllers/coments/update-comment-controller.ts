@@ -15,7 +15,6 @@ export class UpdateCommentController implements Controller {
     const editedComment = await commentModel.findOneAndUpdate({ _id: commentId }, {
       content,
     }, { runValidators: true, new: true })
-    console.log(editedComment)
     if (!editedComment) return notFound('COMMENT')
     return ok({ sucess: editedComment.id })
 
