@@ -20,7 +20,7 @@ import { feedPath } from "../docs/paths/feed/feed-path";
 export const swaggerConfig =  {
   openapi: '3.0.0',
   info: {
-    title:'Social SysMap App API',
+    title:'SySocial - Sysmap Social Media',
     description:'Project for a social media',
     version:'1.0.0',
     contact: {
@@ -31,7 +31,7 @@ export const swaggerConfig =  {
   },
   servers:[{
     url: '/v1',
-    description:'Social SysMap'
+    description:'SySocial'
   }],
   paths: {
     '/signup': signupPath,

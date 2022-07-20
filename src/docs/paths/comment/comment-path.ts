@@ -62,6 +62,21 @@ export const commentPath = {
           }
         }
       },
+      403: {
+        description: 'not found',
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                error: {
+                  type: 'string'
+                }
+              }
+            }
+          }
+        }
+      },
       500: {
         description: 'server error',
         content: {
@@ -138,6 +153,21 @@ export const commentPath = {
       },
       401: {
         description: 'unauthorized',
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                error: {
+                  type: 'string'
+                }
+              }
+            }
+          }
+        }
+      },
+      403: {
+        description: 'not found',
         content: {
           "application/json": {
             schema: {

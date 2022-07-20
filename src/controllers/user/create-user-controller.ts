@@ -24,6 +24,6 @@ export class CreateUserController implements Controller {
         userId: userData._id
       })
     })
-    return ok({ sucess: "registration succeeds" })
+    return ok({ ok: "registration succeeds" })
   }
 }

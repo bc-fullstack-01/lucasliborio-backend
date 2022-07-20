@@ -20,6 +20,6 @@ export class LoginUserController implements Controller {
     const profileData = await profileModel.findOne({
       userId: userData._id
     })
-    return ok({ acessToken: jwt.sign({ profileId: profileData._id }, somesecretdev) })
+    return ok({ acessToken: jwt.sign({ profileId: profileData._id, username:profileData.username }, somesecretdev) })
   }
 }

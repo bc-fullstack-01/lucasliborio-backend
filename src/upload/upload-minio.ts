@@ -1,5 +1,5 @@
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
-import { config } from '../config/config-minio'
+import { config } from '../config/minio'
 
 const s3Client = new S3Client(config)
 export const uploadFileOnBucket = async (file: any, profileId: string) => {

@@ -62,6 +62,21 @@ export const likeCommentPath = {
           }
         }
       },
+      403: {
+        description: 'not found',
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                error: {
+                  type: 'string'
+                }
+              }
+            }
+          }
+        }
+      },
       500: {
         description: 'server error',
         content: {

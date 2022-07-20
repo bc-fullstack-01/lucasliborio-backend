@@ -27,21 +27,6 @@ export const loginPath = {
           }
         }
       },
-      401: {
-        description: 'unauthorized',
-        content:{
-          "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                error: {
-                  type: "string",
-                }
-              }
-            }
-          }
-        }
-      },
       400: {
         description: 'bad request',
         content: {
@@ -50,7 +35,37 @@ export const loginPath = {
               type: "object",
               properties: {
                 error: {
-                  type: "string",
+                  type: 'string'
+                }
+              }
+            }
+          }
+        }
+      },
+      401: {
+        description: 'unauthorized',
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                error: {
+                  type: 'string'
+                }
+              }
+            }
+          }
+        }
+      },
+      403: {
+        description: 'not found',
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                error: {
+                  type: 'string'
                 }
               }
             }
@@ -64,14 +79,14 @@ export const loginPath = {
             schema: {
               type: "object",
               properties: {
-                message: {
-                  type: "string",
+                error: {
+                  type: 'string'
                 }
               }
             }
           }
         }
-      },
+      }
     }
   }
 }
