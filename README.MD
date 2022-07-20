@@ -7,7 +7,7 @@
 
 
 
-# Sobre o projeto
+# Sobre o projeto - SySocial - the SysMap Social Media
 
 Esse repositorio foi criado durante o Modulo backend da imersão FullStack SysMap. Nessa aplicação criamos um projeto incial de uma rede social, tendo elas as funcionalidades:
 1. Criação de :
