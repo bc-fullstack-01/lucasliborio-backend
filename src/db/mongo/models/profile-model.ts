@@ -3,7 +3,8 @@ import { Schema } from "mongoose"
 const profileSchema = new Schema({
   username: {
     type: String,
-    minlength: 5
+    required: [true, 'username cant be empty'],
+    minlength: [5, 'username must have at least 5 characters']
   },
   posts: [{
     type: Schema.Types.ObjectId,

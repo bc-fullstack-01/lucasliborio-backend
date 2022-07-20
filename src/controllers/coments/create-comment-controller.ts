@@ -11,7 +11,7 @@ export class CreateCommentController implements Controller {
     const { payload, content } = request.body
     const { postId } = request.params
 
-    const postToAddNewComment = await postModel.findOne({_id: postId})
+    const postToAddNewComment = await postModel.findOne(postId)
     if (!postToAddNewComment) return notFound('POST')
     const createComment = await commentModel.create({
       content,

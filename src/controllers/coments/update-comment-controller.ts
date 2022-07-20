@@ -2,7 +2,7 @@
 import commentModel from "../../db/mongo/models/comment-model";
 import postModel from "../../db/mongo/models/post-model";
 import { Controller } from "../../protocols/api/controller";
-import { serverError, ok, notFound } from "../../protocols/http/http-response";
+import { ok, notFound } from "../../protocols/http/http-response";
 import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
 
 export class UpdateCommentController implements Controller {

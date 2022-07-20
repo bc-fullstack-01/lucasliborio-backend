@@ -3,8 +3,8 @@ import { Schema } from "mongoose"
 const CommentsSchema = new Schema({
   content: {
     type: String,
-    required: [true, 'content cant be empty'],
-    minLength: 2
+    required: [true, 'comments cant be empty'],
+    minLength: [2, 'comments must have at least 2 characters']
   },
   likes: [{
     type: Schema.Types.ObjectId,

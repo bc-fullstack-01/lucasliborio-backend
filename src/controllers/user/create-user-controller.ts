@@ -12,24 +12,18 @@ export class CreateUserController implements Controller {
     const { username, password, passwordConfirmation, email } = request.body
 
     if (!passwordConfirmation === password) return badRequest('passwords don\'t match')
-    try {
-      const passwordEncrypted = await bcrypt.hash(password, 10)
-      await userModel.create({
-        username,
-        email,
-        password: passwordEncrypted
-      }).then(async (userData) => {
-        await profileModel.create({
-          username: userData.username,
-          userId: userData._id
-        })
+
+    const passwordEncrypted = await bcrypt.hash(password, 10)
+    await userModel.create({
+      username,
+      email,
+      password: passwordEncrypted
+    }).then(async (userData) => {
+      await profileModel.create({
+        username: userData.username,
+        userId: userData._id
       })
-      return ok({ sucess: "registration succeeds" })
-    } catch (error) {
-      console.log("testando", error.properties)
-      if (error.name === 'ValidationError') return badRequest(error.message)
-      if (error.code === 11000) return badRequest('email in use, please try again')
-      return serverError()
-    }
+    })
+    return ok({ sucess: "registration succeeds" })
   }
 }

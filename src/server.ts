@@ -18,6 +18,5 @@ mongoose.connect(MONGO_URL).then(async () => {
     })
   })
 })
-
 export { rabbitBroke }
 export default mongoose

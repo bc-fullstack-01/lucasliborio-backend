@@ -5,12 +5,12 @@ const PostSchema = new Schema({
   title: {
     type: String,
     required: [true, 'title must have at least 2 characters'],
-    minLength: 2
+    minLength: [2, 'title cant be empty']
   },
   description: {
     type: String,
-    required: [true, 'description must have at least 2 characters'],
-    minLength: 2
+    required: [true, 'description cant be empty'],
+    minLength: [2, 'description must have at least 2 characters']
   },
   profileId: {
     type: Schema.Types.ObjectId,
