@@ -8,9 +8,12 @@ const UserSchema = new Schema({
     minLength: [2, 'comments must have at least 2 characters']
   },
   email: {
+    unique: true,
     type: String,
     required: [true, 'comments cant be empty'],
-    minLength: [2, 'comments must have at least 2 characters']
+    minLength: [2, 'comments must have at least 2 characters'],
+    dropDups: true
+    
   },
   password: {
     type: String,

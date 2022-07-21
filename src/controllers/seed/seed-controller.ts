@@ -6,12 +6,13 @@ import profileModel from "../../db/mongo/models/profile-model";
 import { ok } from "../../protocols/http/http-response";
 import postModel from "../../db/mongo/models/post-model";
 
-
+import bcrypt from 'bcrypt'
 
 export class SeedController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const profiles = []
     for (let i = 0; i < users.length; i++) {
+      users[i].password = await bcrypt.hash(users[i].password, 10)
       await userModel.create(users[i]).then(async (createdUser) => {
         return await profileModel.create({
           userId: createdUser.id,
