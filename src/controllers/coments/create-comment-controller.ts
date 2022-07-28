@@ -23,8 +23,9 @@ export class CreateCommentController implements Controller {
         comments: createComment.id
       }
     })
+    const commentToReturn = await commentModel.findById(createComment.id).populate({path: 'profileId'})
     await publishEvent('new-comment', postToAddNewComment.profileId, createComment)
-    return ok({ ok: 'comment added succesfully' })
+    return ok(commentToReturn)
   }
 }
 

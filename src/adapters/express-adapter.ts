@@ -1,7 +1,5 @@
 import { Response, Request } from "express";
-import { json } from "stream/consumers";
 import { Controller } from "../protocols/api/controller";
-import { serverError } from "../protocols/http/http-response";
 import { HttpRequest } from "../protocols/http/http-types";
 
 export const expressAdapter = (controller: Controller) => {

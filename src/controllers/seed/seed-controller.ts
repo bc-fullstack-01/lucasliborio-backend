@@ -7,7 +7,6 @@ import { ok } from "../../protocols/http/http-response";
 import postModel from "../../db/mongo/models/post-model";
 
 import bcrypt from 'bcrypt'
-
 export class SeedController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const profiles = []

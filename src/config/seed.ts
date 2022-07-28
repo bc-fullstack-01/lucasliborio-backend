@@ -23,4 +23,29 @@ export const users = [{
   email: 'fred@gmail.com',
   password: '123',
   passwordConfimation: '123'
+}, {
+  username: 'bruno',
+  email: 'bruno@gmail.com',
+  password: '123',
+  passwordConfimation: '123'
+}, {
+  username: 'leoonardo',
+  email: 'leo@gmail.com',
+  password: '123',
+  passwordConfimation: '123'
+}, {
+  username: 'cintia',
+  email: 'cintia@gmail.com',
+  password: '123',
+  passwordConfimation: '123'
+},{
+  username: 'Rosana',
+  email: 'rosana@gmail.com',
+  password: '123',
+  passwordConfimation: '123'
+}, {
+  username: 'Junior',
+  email: 'Junior@gmail.com',
+  password: '123',
+  passwordConfimation: '123'
 }]

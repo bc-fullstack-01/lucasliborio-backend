@@ -1,0 +1,67 @@
+version: "3"
+services:
+  minio:
+    container_name: minio-container
+    image: bitnami/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: lucasliborio
+      MINIO_ROOT_PASSWORD: tododiaedia
+      MINIO_SERVER_HOST: minio
+      MINIO_SCHEME: http
+      MINIO_API_CORS_ALLOW_ORIGIN: "*"
+  mc:
+    image: minio/mc
+    container_name: mc-container
+    network_mode: host
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc config host add --api s3v2 minio http://localhost:9000/ lucasliborio tododiaedia;
+      /usr/bin/mc rm -r --force minio/sysmap-bucket;
+      /usr/bin/mc mb -p minio/sysmap-bucket;
+      /usr/bin/mc policy set public minio/sysmap-bucket;
+      /usr/bin/mc admin trace minio -a --debug;
+      "
+  mongo:
+    container_name: mongo-container
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+  rabbitmq:
+    image: rabbitmq:3.10-management
+    restart: always
+    container_name: 'rabbitmq-container'
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq/
+      - rabbitmq_log:/var/log/rabbitmq/
+  api:
+    image: node:latest
+    container_name: sysmap-api-container
+    working_dir: /usr/workspace/sysmap-api
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+      - rabbitmq
+      - minio
+    restart: always
+    
+    ports:
+      - "5050:5050"
+    volumes: 
+      - ./build:/usr/workspace/sysmap-api/build
+      - ./package.json:/usr/workspace/sysmap-api/package.json
+    command: bash -c "npm install --omit=dev && npm run start"
+volumes:
+  rabbitmq_data:
+  rabbitmq_log:

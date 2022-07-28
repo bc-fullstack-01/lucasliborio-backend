@@ -10,7 +10,7 @@ export class LikeUnlikePostController implements Controller {
     const { _id } = request.body.payload
 
     const postToLikeUnlike = await postModel.findById(postId)
-    if (postToLikeUnlike) return notFound('POST')
+    if (!postToLikeUnlike) return notFound('POST')
 
     const indexToPost = postToLikeUnlike.likes.indexOf(_id)
     indexToPost === -1

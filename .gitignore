@@ -1,8 +1,6 @@
 node_modules
 build
 .env
-docker-compose.yaml
-uploads
 data
 public
 test.yaml
