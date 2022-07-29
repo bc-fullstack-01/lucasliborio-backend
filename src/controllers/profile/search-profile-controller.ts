@@ -6,13 +6,23 @@ import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
 export class SearchProfileController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const { q } = request.query
+    let regex = new RegExp(q,'i');
+    console.log(q)
     const searchResult = await profileModel.find({
-      $text: {
-        $search: `${q}`
-      }
-    }, {
-      score: { $meta: "textScore" }
-    }).sort({ score: { $meta: "textScore" } })
+      username:regex
+    })
     return ok(searchResult)
   }
 }
+
+/* async handle(request: HttpRequest): Promise<HttpResponse> {
+  const { q } = request.query
+  const searchResult = await profileModel.find({
+    $text: {
+      $search: `"\"${q}"\"`
+    }
+  }, {
+    score: { $meta: "textScore" }
+  }).sort({ score: { $meta: "textScore" } })
+  return ok(searchResult)
+} */
