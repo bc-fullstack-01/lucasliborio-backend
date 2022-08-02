@@ -1,6 +1,6 @@
 import { rabbitBroke } from "../server"
 
-export const publishEvent = async (event:string, keys: any, message: any ) => {
+export const publishEvent = async (event:string, keys: any[], message: any ) => {
   const msg = {
     event,
     payload:message,
@@ -11,3 +11,4 @@ export const publishEvent = async (event:string, keys: any, message: any ) => {
     else console.log('message not send')
   })
 }
+

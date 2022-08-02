@@ -9,7 +9,7 @@ import profileModel from "../../db/mongo/models/profile-model";
 export class LoginUserController implements Controller {
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const somesecretdev = 'somesecretfordev'
+    const somesecretdev = process.env.JWT_SECRET || 'somesecretfordev'
     const { email, password } = request.body
     console.log(password)
     const userData = await userModel.findOne({

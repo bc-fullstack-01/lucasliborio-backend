@@ -21,7 +21,7 @@ export class LikeUnlikeCommentController implements Controller {
       })
 
     if (likeIndex === -1) {
-      await publishEvent('comment-like', commentToLike.profileId, commentToLike)
+      await publishEvent('comment-like', [commentToLike.profileId], commentToLike)
       return ok({ ok: 'comment liked successfully' })
     }
     return ok({ ok: 'comment unliked successfully' })

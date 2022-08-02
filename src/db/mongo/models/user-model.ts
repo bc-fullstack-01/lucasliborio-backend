@@ -1,4 +1,4 @@
-import mongoose from "../../../server"
+import {mongoose} from "../../../server"
 import { Schema } from "mongoose"
 
 const UserSchema = new Schema({

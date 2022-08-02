@@ -1,5 +1,6 @@
-import mongoose from "../../../server"
+import { mongoose } from "../../../server"
 import { Schema } from "mongoose"
+
 const profileSchema = new Schema({
   username: {
     type: String,
@@ -28,4 +29,5 @@ const profileSchema = new Schema({
 })
 
 profileSchema.index({ username: 'text' })
+
 export default mongoose.model("Profile", profileSchema)

@@ -21,11 +21,11 @@ export class LikeUnlikePostController implements Controller {
       })
 
     if (indexToPost === -1) {
-      await publishEvent('post-like', postToLikeUnlike.profileId, postToLikeUnlike)
+      await publishEvent('post-like', [postToLikeUnlike.profileId], postToLikeUnlike)
       return ok({ sucess: 'post liked successfully' })
     }
     else {
-      await publishEvent('post-unlike', postToLikeUnlike.profileId, postToLikeUnlike)
+      await publishEvent('post-unlike', [postToLikeUnlike.profileId], postToLikeUnlike)
       return ok({ sucess: 'post unliked successfully' })
     }
   }

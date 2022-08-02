@@ -26,7 +26,7 @@ export class FollowUnfollowProfileController implements Controller {
             followers: payload._id
           }
         })
-        await publishEvent('follow', profileToFollowUnfollow, payload)
+        await publishEvent('follow', [profileToFollowUnfollow], payload)
       } else {
         await profileModel.updateOne({ _id: payload._id }, {
           $pull: {

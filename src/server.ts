@@ -1,6 +1,8 @@
-import { app } from './config/app';
+import { server, socketsOnline } from './config/app';
 import mongoose from 'mongoose'
 import RabbitServer from './broker/rabbitmq';
+import { socketAuth } from './config/socket-io/socket-auth';
+import { sendNotification } from './config/socket-io/send-notification';
 
 const PORT = process.env.PORT || 4000 // 4000 DEV 5000 DOCKER
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/dev-db'
@@ -10,13 +12,13 @@ const rabbitBroke = new RabbitServer(RABBIT_URL)
 
 mongoose.connect(MONGO_URL).then(async () => {
   await rabbitBroke.start().then(() => {
+    socketsOnline.use(socketAuth)
     rabbitBroke.consumeFromQueue(msg => {
-      console.log(JSON.parse(msg.content.toString()))
-    })
-    app.listen(PORT|| 4000, () => {
-      console.log('server is running on ' + PORT)
+      sendNotification(JSON.parse(msg.content.toString()), socketsOnline)
+    }) 
+    server.listen(PORT|| 4000, () => {
+      console.log('server is runnng on ' + PORT)
     })
   })
 })
-export { rabbitBroke }
-export default mongoose
+export { rabbitBroke, mongoose}

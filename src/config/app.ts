@@ -1,13 +1,13 @@
-import express  from 'express'
+import express from 'express'
 import setupRoutes from '../config/routes'
 import setuMiddlewares from '../config/middlewares'
-import setupSocketIo from './sockei-io/server-socket-io'
+import setupSocketIo from './socket-io/server-socket-io'
 
 
 const app = express()
 
-setupSocketIo(app)
+
 setuMiddlewares(app)
 setupRoutes(app)
-
-export { app }
+const { server, socketsOnline } = setupSocketIo(app)
+export { server, socketsOnline }

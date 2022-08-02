@@ -1,7 +1,7 @@
 import postModel from "../../db/mongo/models/post-model";
 import { Controller } from "../../protocols/api/controller";
 import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
-import { notFound, ok, serverError } from "../../protocols/http/http-response";
+import { notFound, ok } from "../../protocols/http/http-response";
 import profileModel from "../../db/mongo/models/profile-model";
 import { publishEvent } from "../../broker/pub";
 import { uploadFileOnBucket } from "../../upload/upload-minio";
@@ -33,7 +33,7 @@ export class CreatePostController implements Controller {
       }
     })
     if (!profile) return notFound('PROFILE')
-    await publishEvent('post', profile.followers, postToCreate)
+    await publishEvent('post', [...profile.followers], postToCreate)
     return ok(postToCreate)
 
   }
