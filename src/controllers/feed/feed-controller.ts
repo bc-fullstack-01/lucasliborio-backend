@@ -12,7 +12,7 @@ export class FeedController implements Controller {
       .limit(10)
       .skip((page || 0) * 10)
       .sort({ createdAt: "desc" })
-
+    
     return ok(feedToShow)
   }
 }

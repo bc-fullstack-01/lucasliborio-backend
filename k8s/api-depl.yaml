@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sysmap-api
+spec:
+  selector:
+    matchLabels:
+      app: sysmap
+  template:
+    metadata:
+      labels:
+        app: sysmap
+    spec:
+      containers:
+      - name: sysmap-api-container
+        image: lucasliborio/sysmap-api:v1.1
+        ports:
+        - containerPort: 5050

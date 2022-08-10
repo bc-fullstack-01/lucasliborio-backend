@@ -18,7 +18,7 @@ import { searchProfilePath } from "../docs/paths/profile/search-profile-path";
 import { feedPath } from "../docs/paths/feed/feed-path";
 
 export const swaggerConfig =  {
-  openapi: '3.0.0',
+  openapi: '3.0.3',
   info: {
     title:'SySocial - Sysmap Social Media',
     description:'Project for a social media',
@@ -45,7 +45,7 @@ export const swaggerConfig =  {
     '/profile/{profileId}':profilePath,
     '/profile/{profileId}/follow': followUnfollowPath,
     '/profile/{profileId}/posts':listPostPath,
-    '/profile/search?q={q}':searchProfilePath,
+    '/profile/search?q={q}&searchx={searchx}':searchProfilePath,
     '/feed?page={page}': feedPath
   
   },

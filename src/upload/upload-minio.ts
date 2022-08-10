@@ -12,6 +12,6 @@ export const uploadFileOnBucket = async (file: any, profileId: string) => {
     ContentType: file.mimetype,
     Body: file.buffer
   }))
-  const fileUrl = `0.0.0.0:9000/${bucketName}/${filename}`
+  const fileUrl = `/${bucketName}/${filename}`
   return fileUrl
 }

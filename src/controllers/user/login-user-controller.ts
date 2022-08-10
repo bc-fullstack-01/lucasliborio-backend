@@ -11,10 +11,11 @@ export class LoginUserController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const somesecretdev = process.env.JWT_SECRET || 'somesecretfordev'
     const { email, password } = request.body
-    console.log(password)
+    console.log(email, password)
     const userData = await userModel.findOne({
       email
     })
+    console.log(userData)
     if (!userData) return notFound('PROFILE')
     const bool = await bcrypt.compare(password, userData.password)
     if (!bool) return forbbiden()

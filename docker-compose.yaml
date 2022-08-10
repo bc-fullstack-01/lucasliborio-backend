@@ -19,8 +19,9 @@ services:
     depends_on:
       - minio
     entrypoint: >
-      /bin/sh -c"
+      /bin/sh -c "
       /usr/bin/mc config host add --api s3v2 minio http://localhost:9000/ lucasliborio tododiaedia;
+      /usr/bin/mc rm -r --force minio/sysmap-bucket;
       /usr/bin/mc mb -p minio/sysmap-bucket;
       /usr/bin/mc policy set public minio/sysmap-bucket;
       /usr/bin/mc admin trace minio -a --debug;
@@ -44,7 +45,7 @@ services:
       - rabbitmq_data:/var/lib/rabbitmq/
       - rabbitmq_log:/var/log/rabbitmq/
   api:
-    image: node:latest
+    image: node:18.4.0
     container_name: sysmap-api-container
     working_dir: /usr/workspace/sysmap-api
     env_file:
@@ -54,7 +55,6 @@ services:
       - rabbitmq
       - minio
     restart: always
-    
     ports:
       - "5050:5050"
     volumes: 
