@@ -2,6 +2,7 @@ import postModel from "../../db/mongo/models/post-model";
 import { Controller } from "../../protocols/api/controller";
 import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
 import { ok, serverError } from "../../protocols/http/http-response";
+import "dotenv/config"
 
 export class FeedController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
@@ -13,6 +14,9 @@ export class FeedController implements Controller {
       .skip((page || 0) * 10)
       .sort({ createdAt: "desc" })
     
+    feedToShow.map(p => {
+      Object.assign(p, {imageUrl:`${process.env.STORAGE_URL}${p.imageUrl}`})
+    })
     return ok(feedToShow)
   }
 }

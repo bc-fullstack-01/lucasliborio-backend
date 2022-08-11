@@ -3,11 +3,10 @@ import mongoose from 'mongoose'
 import RabbitServer from './broker/rabbitmq';
 import { socketAuth } from './config/socket-io/socket-auth';
 import { sendNotification } from './config/socket-io/send-notification';
-
+import 'dotenv/config'
 const PORT = process.env.PORT || 4000 // 4000 DEV 5000 DOCKER
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/dev-db'
-const RABBIT_URL = process.env.RABBIT_URL || 'amqp://localhost:'
-
+const MONGO_URL = process.env.MONGO_URL_DEPL 
+const RABBIT_URL = process.env.RABBIT_URL_DEPL  /* 'amqp://localhost:' */
 const rabbitBroke = new RabbitServer(RABBIT_URL)
 
 mongoose.connect(MONGO_URL).then(async () => {
@@ -16,7 +15,7 @@ mongoose.connect(MONGO_URL).then(async () => {
     rabbitBroke.consumeFromQueue(msg => {
       sendNotification(JSON.parse(msg.content.toString()), socketsOnline)
     }) 
-    server.listen(PORT|| 4000, () => {
+    server.listen(PORT, () => {
       console.log('server is runnng on ' + PORT)
     })
   })

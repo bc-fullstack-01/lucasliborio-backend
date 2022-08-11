@@ -4,7 +4,7 @@ import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
 import { notFound, ok } from "../../protocols/http/http-response";
 import profileModel from "../../db/mongo/models/profile-model";
 import { publishEvent } from "../../broker/pub";
-import { uploadFileOnBucket } from "../../upload/upload-minio";
+import { uploadFileOnBucket } from "../../upload/upload";
 
 export class CreatePostController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {

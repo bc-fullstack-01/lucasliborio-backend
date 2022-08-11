@@ -16,3 +16,13 @@ spec:
         image: lucasliborio/sysmap-api:v1.1
         ports:
         - containerPort: 5050
+        env:
+        - name: MONGO_URL
+          value: mongodb://mongodb-service/sys-social
+        - name: RABBIT_URL
+          value: amqp://my-release-rabbitmq
+        - name: BUCKET_ENDPOINT
+          value: http://my-minio:9000
+        - name: JWT_SECRET
+          value: somesecretfordev
+        
