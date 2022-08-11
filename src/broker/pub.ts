@@ -7,8 +7,8 @@ export const publishEvent = async (event:string, keys: any[], message: any ) => 
     keys,
   }
   rabbitBroke.publishInExchange(msg).then((bool) => {
-    if (bool) console.log('message send')
-    else console.log('message not send')
+    if (bool) console.log(bool)
+    
   })
 }
 

@@ -1,7 +1,7 @@
 import postModel from "../../db/mongo/models/post-model";
 import { Controller } from "../../protocols/api/controller";
 import { HttpRequest, HttpResponse } from "../../protocols/http/http-types";
-import { ok, serverError } from "../../protocols/http/http-response";
+import { ok } from "../../protocols/http/http-response";
 import "dotenv/config"
 
 export class FeedController implements Controller {
