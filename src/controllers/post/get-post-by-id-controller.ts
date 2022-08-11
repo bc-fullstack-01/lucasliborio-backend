@@ -8,8 +8,8 @@ export class GetPostById implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
 
     const { postId } = request.params
-    const postToSend = await postModel.findById(postId).populate({path: 'comments', populate:{path:'profileId'}}).populate('profileId')
+    const postToSend = await postModel.findById(postId).populate({ path: 'comments', populate: { path: 'profileId' } }).populate('profileId')
     if (!postToSend) return notFound('POST')
-    return ok(postToSend)
+    Object.assign(postToSend, { imageUrl: `${process.env.STORAGE_URL}${postToSend.imageUrl}` })
   }
 }
