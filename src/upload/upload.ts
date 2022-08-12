@@ -1,6 +1,6 @@
 import { Storage } from '@google-cloud/storage'
 import { randomUUID } from 'crypto'
-import GCPcredentials from '../linen-surface-359012-f1f2216080ec'
+import GCPcredentials from '../gcp-cred'
 import "dotenv/config"
 
 const bucketName = 'sys-social-storage'
