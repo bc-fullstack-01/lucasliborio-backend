@@ -1,10 +1,11 @@
-import { Storage, File } from '@google-cloud/storage'
+import { Storage } from '@google-cloud/storage'
 import { randomUUID } from 'crypto'
-import path from 'path'
+import GCPcredentials from '../linen-surface-359012-f1f2216080ec'
+import "dotenv/config"
+
 const bucketName = 'sys-social-storage'
 const gc = new Storage({
-  projectId: 'linen-surface-359012',
-  keyFilename: path.join(__dirname, '..', 'linen-surface-359012-f1f2216080ec.json')
+  credentials:GCPcredentials
 })
 
 export const uploadFileOnBucket = async (file: any, profileId: string) => {

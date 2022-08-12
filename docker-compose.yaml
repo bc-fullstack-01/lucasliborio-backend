@@ -56,11 +56,11 @@ services:
       - minio
     restart: always
     ports:
-      - "5050:5050"
+      - "3030:3030"
     volumes: 
       - ./build:/usr/workspace/sysmap-api/build
       - ./package.json:/usr/workspace/sysmap-api/package.json
-    command: bash -c "npm install --omit=dev && npm run start"
+    command: bash -c "npm install --omit=dev && npm run start:dev"
 volumes:
   rabbitmq_data:
   rabbitmq_log:

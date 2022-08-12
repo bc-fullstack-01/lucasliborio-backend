@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf build && tsc && cp ./src/linen-surface-359012-f1f2216080ec.json ./build",
+    "build": "rm -rf build && tsc",
     "start": "node ./build/server.js",
     "start:dev": "nodemon ./build/server.js",
     "w": "tsc --watch",
