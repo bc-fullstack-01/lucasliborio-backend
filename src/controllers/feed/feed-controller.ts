@@ -8,7 +8,6 @@ export class FeedController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const { payload } = request.body
     const { page } = request.query
-    console.log(payload)
     const feedToShow = await postModel.find({ profileId: { $in: [...payload.following, payload._id]} })
       .populate("profileId")
       .limit(10)

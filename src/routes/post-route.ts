@@ -14,7 +14,7 @@ const multerConfig = {
 const upload = multer(multerConfig)
 
 export default (route: Router) => {
-  route.post('/post/new',upload.single('image'),AuthMiddleware, expressAdapter(new CreatePostController()))
+  route.post('/post/new', upload.single('image'),AuthMiddleware, expressAdapter(new CreatePostController()))
   route.get('/post/:postId', AuthMiddleware, expressAdapter(new GetPostById()))
   route.delete('/post/:postId', AuthMiddleware, expressAdapter(new DeletePostController()))
   route.put('/post/:postId', AuthMiddleware, expressAdapter(new UpdatePostController()))
