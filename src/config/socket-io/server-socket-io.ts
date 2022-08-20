@@ -16,7 +16,7 @@ export default (app: Application) => {
 
   socketsOnline.on('connecion', (socket: any) => {
     
-  });
+  })
 
   return { server, socketsOnline }
 }

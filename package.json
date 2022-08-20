@@ -7,6 +7,7 @@
     "build": "rm -rf build && tsc",
     "start": "node ./build/server.js",
     "start:dev": "nodemon ./build/server.js",
+    "start:d": "npm run build && sudo docker compose up", 
     "w": "tsc --watch",
     "build:docker": "npm run build && docker-compose up"
   },

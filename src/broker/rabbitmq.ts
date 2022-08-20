@@ -23,7 +23,6 @@ export default class RabbitServer {
   async publishInQueue(queue: string, msg: any) {
     return this.channel.sendToQueue(queue, Buffer.from(msg))
   }
-
   async publishInExchange(message: object): Promise<Boolean> {
     const bufferMessage = Buffer.from(JSON.stringify(message))
     return this.channel.publish('EX_notification', 'bind_notification', bufferMessage) // PUBLICA NA EXCHANGE UTILIZANDO A BIND
